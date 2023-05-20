@@ -115,7 +115,12 @@ export default function Home() {
                 tiempo.
               </h3>
               <div className="cta mt-10">
-                <Button label="Armá tu mix" url="/mix" style="accent" />
+                <Button
+                  label="Armá tu mix"
+                  url="/mix"
+                  style="accent"
+                  icon="wheat"
+                />
               </div>
             </div>
           </Container>
