@@ -40,10 +40,10 @@ const categories = [
   },
   {
     id: 4,
-    label: "Café",
-    url: "/category/cafe",
+    label: "Pasas de uva",
+    url: "/category/pasas-uva",
     image: {
-      altText: "Café",
+      altText: "Pasas de uva",
       url: "/images/cafe.png",
     },
     backgroundColor: "bg-brown",
@@ -134,7 +134,7 @@ export default function Home() {
                     className="group w-[50%] mb-1 p-2 lg:w-[25%]"
                   >
                     <article
-                      className={`${categorie.backgroundColor} rounded-xl p-10 transition hover:drop-shadow-2xl`}
+                      className={`${categorie.backgroundColor} rounded-xl px-2 py-10 transition hover:drop-shadow-2xl`}
                     >
                       <div className="image">
                         <Image
