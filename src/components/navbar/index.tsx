@@ -19,8 +19,8 @@ const Navbar = () => {
   return (
     <>
       <Topbar text="¡Envíos en el día a Villa Urquiza!" />
-      <nav className="bg-light sticky top-0">
-        <Container className="text-dark flex flex-wrap items-center justify-between py-4">
+      <nav className="bg-light sticky top-0 z-20">
+        <Container className="text-dark flex flex-wrap items-center justify-between p-4 lg:p-0 lg:py-4">
           <div className="logo w-1/2 font-black text-2xl lg:w-1/5">
             <Link href="/">SALUDABLE</Link>
           </div>
@@ -47,7 +47,7 @@ const Navbar = () => {
             <input
               type="text"
               placeholder="Buscá tu producto!"
-              className="bg-slate-100 w-full p-4"
+              className="bg-slate-100 w-full rounded-full p-4"
             />
           </div>
           <div className="menu w-full hidden lg:block lg:w-1/5">
