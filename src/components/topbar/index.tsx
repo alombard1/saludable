@@ -12,7 +12,11 @@ const Topbar: React.FC<ITopbarProps> = ({ text }) => {
         <div className="social">
           <ul className="flex items-center">
             <li className="ml-4">
-              <a href="" target="_blank">
+              <a
+                href="https://api.whatsapp.com/send?phone="
+                target="_blank"
+                title="WhatsApp"
+              >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 448 512"
@@ -26,7 +30,11 @@ const Topbar: React.FC<ITopbarProps> = ({ text }) => {
               </a>
             </li>
             <li className="ml-4">
-              <a href="" target="_blank">
+              <a
+                href="https://www.instagram.com"
+                target="_blank"
+                title="Instagram"
+              >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 448 512"
