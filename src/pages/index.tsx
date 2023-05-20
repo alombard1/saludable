@@ -3,34 +3,29 @@ import Container from "@/components/container";
 import Navbar from "@/components/navbar";
 import Image from "next/image";
 import Link from "next/link";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Pagination, Navigation } from "swiper";
-import "swiper/css";
-import "swiper/css/pagination";
-import "swiper/css/navigation";
 
 const categories = [
   {
     id: 1,
-    label: "Café",
-    url: "/category/cafe",
+    label: "Cereales",
+    url: "/category/cereales",
     image: {
-      altText: "Café",
+      altText: "Cereales",
       url: "/images/cafe.png",
     },
-    backgroundColor: "#163011",
-    color: "#c99b6a",
+    backgroundColor: "bg-yellow",
+    color: "text-brown",
   },
   {
     id: 2,
-    label: "Café",
-    url: "/category/cafe",
+    label: "Castañas",
+    url: "/category/castanas",
     image: {
-      altText: "Café",
+      altText: "Castañas",
       url: "/images/cafe.png",
     },
-    backgroundColor: "#163011",
-    color: "#c99b6a",
+    backgroundColor: "bg-salmon",
+    color: "text-brown",
   },
   {
     id: 3,
@@ -40,8 +35,8 @@ const categories = [
       altText: "Café",
       url: "/images/cafe.png",
     },
-    backgroundColor: "#163011",
-    color: "#c99b6a",
+    backgroundColor: "bg-darkGreen",
+    color: "text-beige",
   },
   {
     id: 4,
@@ -51,8 +46,52 @@ const categories = [
       altText: "Café",
       url: "/images/cafe.png",
     },
-    backgroundColor: "#163011",
-    color: "#c99b6a",
+    backgroundColor: "bg-brown",
+    color: "text-gold",
+  },
+  {
+    id: 5,
+    label: "Almendras",
+    url: "/category/almendras",
+    image: {
+      altText: "Almendras",
+      url: "/images/cafe.png",
+    },
+    backgroundColor: "bg-lightGray",
+    color: "text-brown",
+  },
+  {
+    id: 6,
+    label: "Maní",
+    url: "/category/mani",
+    image: {
+      altText: "Maní",
+      url: "/images/cafe.png",
+    },
+    backgroundColor: "bg-beige",
+    color: "text-brown",
+  },
+  {
+    id: 7,
+    label: "Nueces",
+    url: "/category/nueces",
+    image: {
+      altText: "Nueces",
+      url: "/images/cafe.png",
+    },
+    backgroundColor: "bg-gold",
+    color: "text-darkGreen",
+  },
+  {
+    id: 8,
+    label: "Semillas",
+    url: "/category/semillas",
+    image: {
+      altText: "Semillas",
+      url: "/images/cafe.png",
+    },
+    backgroundColor: "bg-accent",
+    color: "text-white",
   },
 ];
 
@@ -86,28 +125,29 @@ export default function Home() {
             <h2 className="text-accent font-bold uppercase text-xs">
               Categorías
             </h2>
-            <div className="categories mt-5 flex flex-wrap">
+            <div className="categories mt-5 flex flex-wrap justify-between">
               {categories &&
                 categories.map((categorie) => (
                   <Link
                     href={categorie.url}
                     key={categorie.id}
-                    className="w-[48%] mr-1 mb-1 lg:w-[24%]"
+                    className="group w-[50%] mb-1 p-2 lg:w-[25%]"
                   >
                     <article
-                      //className={`bg-${categorie.backgroundColor} text-[${categorie.color}] rounded-xl`}
-                      className={`bg-[#163011] rounded-xl p-10`}
+                      className={`${categorie.backgroundColor} rounded-xl p-10 transition hover:drop-shadow-2xl`}
                     >
                       <div className="image">
                         <Image
                           src={categorie.image.url}
                           alt={categorie.image.altText}
                           width={150}
-                          height={150}
+                          height={250}
                           className="mx-auto"
                         />
                       </div>
-                      <div className="label text-[#C99B6A] uppercase font-semibold text-md text-center">
+                      <div
+                        className={`label ${categorie.color} uppercase font-semibold text-md text-center`}
+                      >
                         {categorie.label}
                       </div>
                     </article>
