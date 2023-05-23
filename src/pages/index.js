@@ -1,4 +1,4 @@
-import { Button, Container, Navbar, WhatsApp } from "../components";
+import { Button, Container, Footer, Navbar, WhatsApp } from "../components";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -158,6 +158,7 @@ export default function Home() {
         </main>
       </div>
       <WhatsApp />
+      <Footer />
     </>
   );
 }
