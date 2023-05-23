@@ -1,5 +1,4 @@
-import Navbar from "@/components/navbar";
-import Image from "next/image";
+import { Navbar } from "../../components";
 
 export default function Cart() {
   return (
