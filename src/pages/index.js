@@ -1,4 +1,11 @@
-import { Button, Container, Footer, Navbar, WhatsApp } from "../components";
+import {
+  Button,
+  Container,
+  Footer,
+  Navbar,
+  ProductCard,
+  WhatsApp,
+} from "../components";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -93,7 +100,7 @@ const categories = [
   },
 ];
 
-export default function Home() {
+export default function Home({ products }) {
   return (
     <>
       <div id="home">
@@ -119,7 +126,7 @@ export default function Home() {
               </div>
             </Container>
           </section>
-          <section className="bg-light p-4">
+          <section className="bg-slate-100 p-4">
             <Container className="py-14 lg:py-[10rem]">
               <h2 className="text-accent font-bold uppercase text-xs">
                 Categorías
@@ -154,6 +161,48 @@ export default function Home() {
                   ))}
               </div>
             </Container>
+            <section>
+              <Container>
+                <div className="lg:flex lg:items-center lg:justify-between">
+                  <div className="text text-center text-neutral-900 px-14 lg:w-1/3">
+                    <h2 className="text-3xl font-semibold">Nueces</h2>
+                    <p className="mt-2">
+                      ¿Sabías que las nueces son uno de los alimentos más
+                      antiguos que se consumen en el mundo?
+                    </p>
+                    <div className="cta mt-8 mb-8 lg:mb-0">
+                      <Button
+                        type="accent"
+                        label="Más sobre nueces"
+                        className="mx-auto"
+                      />
+                    </div>
+                  </div>
+                  <div className="image lg:w-2/3">
+                    <Image
+                      src="/images/photo-wallnuts.jpg"
+                      alt="wallnuts"
+                      width={960}
+                      height={500}
+                      className="mx-auto rounded-3xl"
+                    />
+                  </div>
+                </div>
+              </Container>
+            </section>
+          </section>
+          <section className="bg-slate-100 p-4">
+            <Container className="py-14 lg:py-[10rem]">
+              <h2 className="text-accent font-bold uppercase text-xs">
+                Novedades
+              </h2>
+              <div className="categories mt-5 flex flex-wrap justify-between">
+                {products &&
+                  products.map((product) => (
+                    <ProductCard key={product.id} product={product} />
+                  ))}
+              </div>
+            </Container>
           </section>
         </main>
       </div>
@@ -162,3 +211,114 @@ export default function Home() {
     </>
   );
 }
+
+export const getServerSideProps = async ({ query }) => {
+  const slug = query.slug;
+  /* const data2 = getDataBy("/", "slug", slug); */
+  try {
+    const products = [
+      {
+        id: 1,
+        name: "Nueces Mariposa Extra Light",
+        slug: "nueces-mariposa-extra-light",
+        description:
+          "Con su característico tamaño más pequeño y su sabor suave, nuestras Nueces Mariposa Extra Light son ideales para aquellos que buscan un bocado ligero y sabroso. Su textura crujiente y su perfil de sabor delicado las convierten en la elección perfecta para aquellos que prefieren algo menos intenso.",
+        sku: "NUE001",
+        price: 1108,
+        sale_price: null,
+        available: true,
+        category: "Nueces",
+        stock: 10,
+        labels: null,
+        images: [
+          {
+            url: "/images/cafe.png",
+            alt: "Café",
+          },
+        ],
+      },
+      {
+        id: 2,
+        name: "Nueces Mariposa Extra Light",
+        slug: "nueces-mariposa-extra-light",
+        description:
+          "Con su característico tamaño más pequeño y su sabor suave, nuestras Nueces Mariposa Extra Light son ideales para aquellos que buscan un bocado ligero y sabroso. Su textura crujiente y su perfil de sabor delicado las convierten en la elección perfecta para aquellos que prefieren algo menos intenso.",
+        sku: "NUE001",
+        price: 1108,
+        sale_price: null,
+        available: false,
+        category: "Nueces",
+        stock: 10,
+        labels: null,
+        images: [
+          {
+            url: "/images/cafe.png",
+            alt: "Café",
+          },
+        ],
+      },
+      {
+        id: 3,
+        name: "Nueces Mariposa Extra Light",
+        slug: "nueces-mariposa-extra-light",
+        description:
+          "Con su característico tamaño más pequeño y su sabor suave, nuestras Nueces Mariposa Extra Light son ideales para aquellos que buscan un bocado ligero y sabroso. Su textura crujiente y su perfil de sabor delicado las convierten en la elección perfecta para aquellos que prefieren algo menos intenso.",
+        sku: "NUE001",
+        price: 1108,
+        sale_price: 760,
+        available: true,
+        category: "Nueces",
+        stock: 10,
+        labels: null,
+        images: [
+          {
+            url: "/images/cafe.png",
+            alt: "Café",
+          },
+        ],
+      },
+      {
+        id: 4,
+        name: "Nueces Mariposa Extra Light",
+        slug: "nueces-mariposa-extra-light",
+        description:
+          "Con su característico tamaño más pequeño y su sabor suave, nuestras Nueces Mariposa Extra Light son ideales para aquellos que buscan un bocado ligero y sabroso. Su textura crujiente y su perfil de sabor delicado las convierten en la elección perfecta para aquellos que prefieren algo menos intenso.",
+        sku: "NUE001",
+        price: 1108,
+        sale_price: 760,
+        available: true,
+        category: "Nueces",
+        stock: 10,
+        labels: null,
+        images: [
+          {
+            url: "/images/cafe.png",
+            alt: "Café",
+          },
+        ],
+      },
+      {
+        id: 5,
+        name: "Nueces Mariposa Extra Light",
+        slug: "nueces-mariposa-extra-light",
+        description:
+          "Con su característico tamaño más pequeño y su sabor suave, nuestras Nueces Mariposa Extra Light son ideales para aquellos que buscan un bocado ligero y sabroso. Su textura crujiente y su perfil de sabor delicado las convierten en la elección perfecta para aquellos que prefieren algo menos intenso.",
+        sku: "NUE001",
+        price: 1108,
+        sale_price: 760,
+        available: true,
+        category: "Nueces",
+        stock: 10,
+        labels: null,
+        images: [
+          {
+            url: "/images/cafe.png",
+            alt: "Café",
+          },
+        ],
+      },
+    ];
+
+    return { props: { products } };
+  } catch (error) {}
+};
