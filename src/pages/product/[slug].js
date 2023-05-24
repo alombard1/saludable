@@ -8,21 +8,8 @@ import {
   Navbar,
   WhatsApp,
 } from "../../components";
-
-const getPrice = (price, sale_price) => {
-  if (sale_price) {
-    return (
-      <>
-        <span className="regular text-xl line-through text-neutral-400">
-          ${price}
-        </span>
-        <span className="special ml-2 text-3xl font-bold">${sale_price}</span>
-      </>
-    );
-  }
-
-  return <span className="special ml-2 text-3xl font-bold">${price}</span>;
-};
+import { getDataBy } from "../../utils/data";
+import { formatPrice, getLabels } from "../../utils/products";
 
 const grs = [
   {
@@ -73,27 +60,17 @@ const Product = ({ data }) => {
               <div className="lg:w-1/2">
                 <div className="p-4 lg:p-10">
                   <div className="title text-3xl font-semibold">
-                    {data.title}
+                    {data.name}
                   </div>
                   <div className="text-xs text-neutral-600">SKU {data.sku}</div>
-                  <div className="labels flex flex-wrap mt-4">
-                    {data.sale_price && <Label type="lime" label="¡Oferta!" />}
-                    {data.stock && data.stock > 0 && (
-                      <Label type="green" label="En stock" />
-                    )}
-                    {data.labels &&
-                      data.labels?.map((label) => {
-                        return (
-                          <Label
-                            key={label.label}
-                            type={label.type}
-                            label={label.name}
-                          />
-                        );
-                      })}
-                  </div>
+                  {getLabels(
+                    data.sale_price,
+                    data.stock,
+                    data.available,
+                    data.labels
+                  )}
                   <div className="price mt-4">
-                    {getPrice(data.price, data.sale_price)}
+                    {formatPrice(data.price, data.sale_price)}
                   </div>
                   <div className="quantity mt-10">
                     <div className="formGroup mt-2">
@@ -105,7 +82,7 @@ const Product = ({ data }) => {
                     </div>
                   </div>
                   <div className="cta mt-10 lg:flex">
-                    {data.available ? (
+                    {data.available && data.stock > 0 ? (
                       <>
                         <Button
                           type="accent"
@@ -152,28 +129,31 @@ const Product = ({ data }) => {
 
 export default Product;
 
-export const getServerSideProps = async () => {
-  /* const res = await fetch('https://api.github.com/repos/vercel/next.js');
-  const repo = await res.json(); */
-  const data = {
-    id: 1,
-    title: "Nueces Mariposa Extra Light",
-    slug: "nueces-mariposa-extra-light",
-    description:
-      "Con su característico tamaño más pequeño y su sabor suave, nuestras Nueces Mariposa Extra Light son ideales para aquellos que buscan un bocado ligero y sabroso. Su textura crujiente y su perfil de sabor delicado las convierten en la elección perfecta para aquellos que prefieren algo menos intenso.",
-    sku: "NUE001",
-    price: 1108,
-    sale_price: 760,
-    available: true,
-    category: "Nueces",
-    stock: 14,
-    labels: null,
-    images: [
-      {
-        url: "/images/cafe.png",
-        alt: "Café",
-      },
-    ],
-  };
-  return { props: { data } };
+export const getServerSideProps = async ({ query }) => {
+  const slug = query.slug;
+  /* const data2 = getDataBy("/", "slug", slug); */
+  try {
+    const data = {
+      id: 1,
+      name: "Nueces Mariposa Extra Light",
+      slug: "nueces-mariposa-extra-light",
+      description:
+        "Con su característico tamaño más pequeño y su sabor suave, nuestras Nueces Mariposa Extra Light son ideales para aquellos que buscan un bocado ligero y sabroso. Su textura crujiente y su perfil de sabor delicado las convierten en la elección perfecta para aquellos que prefieren algo menos intenso.",
+      sku: "NUE001",
+      price: 1108,
+      sale_price: 760,
+      available: true,
+      category: "Nueces",
+      stock: 10,
+      labels: null,
+      images: [
+        {
+          url: "/images/cafe.png",
+          alt: "Café",
+        },
+      ],
+    };
+
+    return { props: { data } };
+  } catch (error) {}
 };
