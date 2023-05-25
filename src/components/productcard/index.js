@@ -22,7 +22,7 @@ const ProductCard = ({ product }) => {
       className="group w-[50%] mb-1 p-2 lg:w-[20%]"
     >
       <article
-        className={`bg-white rounded-xl px-2 py-10 transition hover:drop-shadow-2xl`}
+        className={`bg-white rounded-xl px-2 py-4 transition hover:drop-shadow-2xl`}
       >
         <div className="image">
           {images && (

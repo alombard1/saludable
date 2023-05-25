@@ -10,6 +10,8 @@ import {
 } from "../../components";
 import { getDataBy } from "../../utils/data";
 import { formatPrice, getLabels } from "../../utils/products";
+import { useContext } from "react";
+import CartContext from "../../context/CartContext";
 
 const grs = [
   {
@@ -34,23 +36,31 @@ const grs = [
   },
 ];
 
-const Product = ({ data }) => {
+const Product = ({ product }) => {
+  const { getCart, addToCart } = useContext(CartContext);
+
+  const handleAdd = (product) => {
+    console.log(product);
+    addToCart(product);
+    console.log(getCart());
+  };
+
   return (
     <>
       <Navbar />
       <div id="product" className="bg-slate-100 text-neutral-900">
         <Container>
           <div className="breadcrumbs text-sm p-4">
-            Inicio &gt; {data && data.category}{" "}
+            Inicio &gt; {product && product.category}{" "}
           </div>
           <article className=" mt-2">
             <div className="lg:flex lg:justify-between">
               <div className="lg:w-1/2">
                 <div className="image">
-                  {data.images?.length > 0 && (
+                  {product.images?.length > 0 && (
                     <Image
-                      src={data.images[0]?.url}
-                      alt={data.images[0]?.alt}
+                      src={product.images[0]?.url}
+                      alt={product.images[0]?.alt}
                       width={800}
                       height={800}
                     />
@@ -60,17 +70,19 @@ const Product = ({ data }) => {
               <div className="lg:w-1/2">
                 <div className="p-4 lg:p-10">
                   <div className="title text-3xl font-semibold">
-                    {data.name}
+                    {product.name}
                   </div>
-                  <div className="text-xs text-neutral-600">SKU {data.sku}</div>
+                  <div className="text-xs text-neutral-600">
+                    SKU {product.sku}
+                  </div>
                   {getLabels(
-                    data.sale_price,
-                    data.stock,
-                    data.available,
-                    data.labels
+                    product.sale_price,
+                    product.stock,
+                    product.available,
+                    product.labels
                   )}
                   <div className="price mt-4">
-                    {formatPrice(data.price, data.sale_price)}
+                    {formatPrice(product.price, product.sale_price)}
                   </div>
                   <div className="quantity mt-10">
                     <div className="formGroup mt-2">
@@ -82,12 +94,13 @@ const Product = ({ data }) => {
                     </div>
                   </div>
                   <div className="cta mt-10 lg:flex">
-                    {data.available && data.stock > 0 ? (
+                    {product.available && product.stock > 0 ? (
                       <>
                         <Button
                           type="accent"
                           label="Agregar al carrito"
                           icon="cart"
+                          onClick={() => handleAdd(product)}
                         />
                         <Button type="transparent" label="Comprar ahora" />
                       </>
@@ -113,7 +126,7 @@ const Product = ({ data }) => {
                     </div>
                   </div>
                   <div className="description mt-10 text-neutral-500 text-sm">
-                    {data.description}
+                    {product.description}
                   </div>
                 </div>
               </div>
@@ -133,7 +146,7 @@ export const getServerSideProps = async ({ query }) => {
   const slug = query.slug;
   /* const data2 = getDataBy("/", "slug", slug); */
   try {
-    const data = {
+    const product = {
       id: 1,
       name: "Nueces Mariposa Extra Light",
       slug: "nueces-mariposa-extra-light",
@@ -148,12 +161,12 @@ export const getServerSideProps = async ({ query }) => {
       labels: null,
       images: [
         {
-          url: "/images/cafe.png",
+          url: "/images/product-nueces.jpg",
           alt: "Café",
         },
       ],
     };
 
-    return { props: { data } };
+    return { props: { product } };
   } catch (error) {}
 };

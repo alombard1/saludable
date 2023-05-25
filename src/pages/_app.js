@@ -2,6 +2,7 @@ import "../styles/globals.css";
 import { Inter } from "next/font/google";
 import Head from "next/head";
 import Script from "next/script";
+import { CartProvider } from "../context/CartContext";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -55,9 +56,11 @@ export default function App({ Component, pageProps }) {
         gtag('config', 'G-DH606GGYFF');`}
       </Script> */}
       {/* Google tag (gtag.js) */}
-      <main className={inter.className}>
-        <Component {...pageProps} />
-      </main>
+      <CartProvider>
+        <main className={inter.className}>
+          <Component {...pageProps} />
+        </main>
+      </CartProvider>
     </>
   );
 }

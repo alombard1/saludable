@@ -1,8 +1,12 @@
 import Link from "next/link";
 import Topbar from "../topbar";
 import Container from "../container";
+import { useContext } from "react";
+import CartContext from "../../context/CartContext";
 
 const Navbar = () => {
+  const { getCartLength } = useContext(CartContext);
+
   return (
     <>
       <Topbar text="¡Envíos en el día a Villa Urquiza!" />
@@ -110,7 +114,7 @@ const Navbar = () => {
                     />
                   </svg>
                   <div className="number bg-accent rounded-full w-4 h-4 flex items-center justify-center text-[0.55rem] text-light font-bold">
-                    0
+                    {getCartLength()}
                   </div>
                 </Link>
               </li>

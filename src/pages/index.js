@@ -232,7 +232,7 @@ export const getServerSideProps = async ({ query }) => {
         labels: null,
         images: [
           {
-            url: "/images/cafe.png",
+            url: "/images/product-nueces.jpg",
             alt: "Café",
           },
         ],
@@ -252,7 +252,7 @@ export const getServerSideProps = async ({ query }) => {
         labels: null,
         images: [
           {
-            url: "/images/cafe.png",
+            url: "/images/product-almendras.jpg",
             alt: "Café",
           },
         ],
@@ -272,7 +272,7 @@ export const getServerSideProps = async ({ query }) => {
         labels: null,
         images: [
           {
-            url: "/images/cafe.png",
+            url: "/images/product-almendras.jpg",
             alt: "Café",
           },
         ],
@@ -292,7 +292,7 @@ export const getServerSideProps = async ({ query }) => {
         labels: null,
         images: [
           {
-            url: "/images/cafe.png",
+            url: "/images/product-nueces.jpg",
             alt: "Café",
           },
         ],
@@ -312,7 +312,7 @@ export const getServerSideProps = async ({ query }) => {
         labels: null,
         images: [
           {
-            url: "/images/cafe.png",
+            url: "/images/product-nueces.jpg",
             alt: "Café",
           },
         ],
