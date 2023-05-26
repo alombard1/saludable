@@ -1,4 +1,4 @@
-const IconCart = () => {
+const IconHelp = () => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -13,12 +13,11 @@ const IconCart = () => {
       strokeLinejoin="round"
     >
       <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-      <path d="M6 19m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
-      <path d="M17 19m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
-      <path d="M17 17h-11v-14h-2" />
-      <path d="M6 5l14 1l-1 7h-13" />
+      <path d="M3 12a9 9 0 1 0 18 0a9 9 0 0 0 -18 0" />
+      <path d="M12 16v.01" />
+      <path d="M12 13a2 2 0 0 0 .914 -3.782a1.98 1.98 0 0 0 -2.414 .483" />
     </svg>
   );
 };
 
-export default IconCart;
+export default IconHelp;
