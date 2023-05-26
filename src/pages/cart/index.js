@@ -1,9 +1,10 @@
 import { useContext } from "react";
-import { Button, Container, Footer, Navbar, WhatsApp } from "../../components";
 import CartContext from "../../context/CartContext";
+import { Button, Container, Footer, Navbar, WhatsApp } from "../../components";
 import Image from "next/image";
-import { formatPrice } from "../../utils/products";
 import Link from "next/link";
+import { formatPrice } from "../../utils/products";
+import { goTo } from "../../utils/location";
 
 export default function Cart() {
   const { getCart, getCartLength, getCartTotal, removeFromCart, emptyCart } =
@@ -13,7 +14,22 @@ export default function Cart() {
   const cartEmpty = () => {
     return (
       <>
-        <div>ta vacio</div>
+        <div className="flex items-center justify-center">
+          <div className="text-center py-14">
+            <h2 className="text-2xl">Tu carrito está vacío</h2>
+            <h4 className="mt-2">
+              Te invitamos a recorrer la tienda encontrar lo que estás buscando
+            </h4>
+            <div className="mt-8">
+              <Button
+                type="accent"
+                label="Ver productos"
+                className="mx-auto"
+                onClick={() => goTo("/")}
+              />
+            </div>
+          </div>
+        </div>
       </>
     );
   };
@@ -29,15 +45,20 @@ export default function Cart() {
                 className="flex flex-wrap items-center justify-between py-4"
               >
                 <div className="image w-1/5">
-                  <Image
-                    src={product.images[0].url}
-                    alt={product.images[0].alt}
-                    width={100}
-                    height={100}
-                  />
+                  {product.images?.length > 0 && (
+                    <Image
+                      src={product.images[0]?.url}
+                      alt={product.images[0]?.alt}
+                      width={100}
+                      height={100}
+                    />
+                  )}
                 </div>
                 <div className="font-semibold w-4/5 pl-4 lg:w-3/5">
                   {product.name}
+                </div>
+                <div className="w-1/2 flex justify-end lg:w-1/5">
+                  {product.quantity}
                 </div>
                 <div className="w-1/2 flex justify-end lg:w-1/5">
                   {formatPrice(product.price, product.sale_price, "small")}

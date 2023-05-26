@@ -15,7 +15,7 @@ const categories = [
     label: "Cereales",
     url: "/category/cereales",
     image: {
-      altText: "Cereales",
+      alt: "Cereales",
       url: "/images/cafe.png",
     },
     backgroundColor: "bg-yellow",
@@ -26,7 +26,7 @@ const categories = [
     label: "Castañas",
     url: "/category/castanas",
     image: {
-      altText: "Castañas",
+      alt: "Castañas",
       url: "/images/cafe.png",
     },
     backgroundColor: "bg-salmon",
@@ -37,7 +37,7 @@ const categories = [
     label: "Café",
     url: "/category/cafe",
     image: {
-      altText: "Café",
+      alt: "Café",
       url: "/images/cafe.png",
     },
     backgroundColor: "bg-darkGreen",
@@ -48,7 +48,7 @@ const categories = [
     label: "Pasas de uva",
     url: "/category/pasas-uva",
     image: {
-      altText: "Pasas de uva",
+      alt: "Pasas de uva",
       url: "/images/cafe.png",
     },
     backgroundColor: "bg-brown",
@@ -59,7 +59,7 @@ const categories = [
     label: "Almendras",
     url: "/category/almendras",
     image: {
-      altText: "Almendras",
+      alt: "Almendras",
       url: "/images/cafe.png",
     },
     backgroundColor: "bg-lightGray",
@@ -70,7 +70,7 @@ const categories = [
     label: "Maní",
     url: "/category/mani",
     image: {
-      altText: "Maní",
+      alt: "Maní",
       url: "/images/cafe.png",
     },
     backgroundColor: "bg-beige",
@@ -81,7 +81,7 @@ const categories = [
     label: "Nueces",
     url: "/category/nueces",
     image: {
-      altText: "Nueces",
+      alt: "Nueces",
       url: "/images/cafe.png",
     },
     backgroundColor: "bg-gold",
@@ -92,7 +92,7 @@ const categories = [
     label: "Semillas",
     url: "/category/semillas",
     image: {
-      altText: "Semillas",
+      alt: "Semillas",
       url: "/images/cafe.png",
     },
     backgroundColor: "bg-accent",
@@ -143,13 +143,15 @@ export default function Home({ products }) {
                         className={`${categorie.backgroundColor} rounded-xl px-2 py-10 transition hover:drop-shadow-2xl`}
                       >
                         <div className="image">
-                          <Image
-                            src={categorie.image.url}
-                            alt={categorie.image.altText}
-                            width={150}
-                            height={250}
-                            className="mx-auto"
-                          />
+                          {categorie.image && (
+                            <Image
+                              src={categorie.image.url}
+                              alt={categorie.image.alt}
+                              width={150}
+                              height={250}
+                              className="mx-auto"
+                            />
+                          )}
                         </div>
                         <div
                           className={`label ${categorie.color} uppercase font-semibold text-md text-center`}
