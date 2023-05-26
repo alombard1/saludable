@@ -15,7 +15,7 @@ const InputQuantity = ({ quantity, maxQuantity, onChange }) => {
   };
 
   return (
-    <div className="bg-white h-10 flex items-center py-2 px-4 text-md border border-neutral-400 rounded-full">
+    <div className="bg-white w-fit h-10 flex items-center py-2 px-4 text-md border border-neutral-400 rounded-full">
       <div>
         <Button type="link" icon="minus" onClick={handleDecrease} />
       </div>
