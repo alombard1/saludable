@@ -19,16 +19,16 @@ const ProductCard = ({ product }) => {
     <Link
       href={`/product/${slug}`}
       key={id}
-      className="group w-[50%] mb-1 p-2 lg:w-[20%]"
+      className="group w-full mb-1 p-2 lg:w-[20%]"
     >
       <article
         className={`bg-white rounded-xl px-2 py-4 transition hover:drop-shadow-2xl`}
       >
         <div className="image">
-          {images && (
+          {images.length > 0 && (
             <Image
               src={images[0].url}
-              alt={images[0].altText}
+              alt={images[0].alt}
               width={150}
               height={250}
               className="mx-auto"
