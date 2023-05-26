@@ -1,11 +1,18 @@
+import { useContext, useState } from "react";
 import Link from "next/link";
 import Topbar from "../topbar";
 import Container from "../container";
-import { useContext } from "react";
 import CartContext from "../../context/CartContext";
+import MobileMenu from "../mobilemenu";
+import { AnimatePresence, motion } from "framer-motion";
 
 const Navbar = () => {
   const { getCartLength } = useContext(CartContext);
+  const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  const toggleMobileMenu = () => {
+    setMobileMenuOpen(!isMobileMenuOpen);
+  };
 
   return (
     <>
@@ -101,7 +108,10 @@ const Navbar = () => {
               </li>
               <li className="ml-4 lg:hidden">
                 <div className="toggler text-right">
-                  <button className="flex items-center ml-auto mr-0">
+                  <button
+                    className="flex items-center ml-auto mr-0"
+                    onClick={toggleMobileMenu}
+                  >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       fill="none"
@@ -124,6 +134,21 @@ const Navbar = () => {
           </div>
         </Container>
       </nav>
+      <AnimatePresence>
+        {isMobileMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed z-50"
+          >
+            <MobileMenu
+              isOpen={isMobileMenuOpen}
+              setIsOpen={setMobileMenuOpen}
+            />
+          </motion.div>
+        )}
+      </AnimatePresence>
     </>
   );
 };
