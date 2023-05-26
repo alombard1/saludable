@@ -10,7 +10,7 @@ import {
 } from "../../components";
 import { getDataBy } from "../../utils/data";
 import { formatPrice, getLabels } from "../../utils/products";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import CartContext from "../../context/CartContext";
 
 const grs = [
@@ -37,12 +37,16 @@ const grs = [
 ];
 
 const Product = ({ product }) => {
-  const { getCart, addToCart } = useContext(CartContext);
+  const { addToCart } = useContext(CartContext);
+  const [price, setPrice] = useState(product.price);
+  const [salePrice, setSalePrice] = useState(product.sale_price);
+  const [quantity, setQuantity] = useState(1);
 
   const handleAdd = (product) => {
-    console.log(product);
-    addToCart(product);
-    console.log(getCart());
+    addToCart({
+      ...product,
+      quantity: quantity,
+    });
   };
 
   return (
@@ -82,14 +86,23 @@ const Product = ({ product }) => {
                     product.labels
                   )}
                   <div className="price mt-4">
-                    {formatPrice(product.price, product.sale_price)}
+                    {formatPrice(price, salePrice)}
                   </div>
-                  <div className="quantity mt-10">
+                  <div className="quantity mt-10 lg:flex">
                     <div className="formGroup mt-2">
+                      <Input type="select" label="Peso" data={grs} />
+                    </div>
+                    <div className="formGroup mt-2 lg:ml-4">
                       <Input
-                        type="select"
-                        label="Seleccioná la cantidad"
-                        data={grs}
+                        type="quantity"
+                        label="Cantidad"
+                        quantity={quantity}
+                        maxQuantity={product.stock}
+                        onChange={(newQuantity) => {
+                          setQuantity(newQuantity);
+                          setPrice(product.price * newQuantity);
+                          setSalePrice(product.sale_price * newQuantity);
+                        }}
                       />
                     </div>
                   </div>
@@ -100,14 +113,20 @@ const Product = ({ product }) => {
                           type="accent"
                           label="Agregar al carrito"
                           icon="cart"
+                          className="mx-auto"
                           onClick={() => handleAdd(product)}
                         />
-                        <Button type="transparent" label="Comprar ahora" />
+                        <Button
+                          type="transparent"
+                          label="Comprar ahora"
+                          className="mx-auto mt-4 lg:mt-0"
+                        />
                       </>
                     ) : (
                       <Button
                         type="accent"
                         label="Consultar por stock"
+                        className="mx-auto"
                         icon="cart"
                       />
                     )}
@@ -157,7 +176,7 @@ export const getServerSideProps = async ({ query }) => {
       sale_price: 760,
       available: true,
       category: "Nueces",
-      stock: 10,
+      stock: 14,
       labels: null,
       images: [
         {
